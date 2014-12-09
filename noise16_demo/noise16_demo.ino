@@ -20,11 +20,11 @@ Note: If you receive compile errors (as I have in the Stino add-on for Sublime T
 
 #include <FastLED.h>                                          // FastLED library
  
-#define LED_DT 12                                             // Data pin
-#define NUM_LEDS 15                                           // Number of LED's
-#define COLOR_ORDER GRB                                       // Change the order as necessary
-#define LED_TYPE WS2812B                                       // What kind of strip are you using?
-
+#define LED_DT 11                                              // Serial data pin for WS2801
+#define LED_CL 13                                             // Serial clock pin for WS2801
+#define COLOR_ORDER RGB                                       // Are they RGB, GRB or what??
+#define LED_TYPE WS2801                                       // What kind of strip are you using?
+#define NUM_LEDS 50                                           // Number of LED's
 
 struct CRGB leds[NUM_LEDS];                                   // Initializxe our array
 
@@ -49,7 +49,7 @@ uint8_t wavebright= 128;                                      // Usesd by qsub t
 
 void setup() {
   Serial.begin(57600);
-  LEDS.addLeds<LED_TYPE, LED_DT, COLOR_ORDER>(leds, NUM_LEDS);
+  LEDS.addLeds<LED_TYPE, LED_DT, LED_CL, COLOR_ORDER>(leds, NUM_LEDS);
   FastLED.setBrightness(max_bright);
   set_max_power_in_volts_and_milliamps(5, 500);                // FastLED 2.1 Power management set at 5V, 500mA
 

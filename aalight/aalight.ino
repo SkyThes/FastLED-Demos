@@ -210,12 +210,11 @@ y         Save of LED's to flash                B1                     // Not ye
 const int interruptIR = 0;                                    // Meaning, pin 2 on an UNO.
  
 // Fixed definitions cannot change on the fly.
-#define LED_DT 12                                             // Serial data pin.
-#define LED_CK 11                                             // Serial clock pin for WS2801 or APA102.
-#define COLOR_ORDER GRB                                       // Are they RGB, GRB or what??
-#define LED_TYPE APA102
-// #define LED_TYPE WS2812B                                      // What kind of strip are you using?
-#define NUM_LEDS 12                                            // Number of LED's.
+#define LED_DT 11                                              // Serial data pin for WS2801
+#define LED_CL 13                                             // Serial clock pin for WS2801
+#define COLOR_ORDER RGB                                       // Are they RGB, GRB or what??
+#define LED_TYPE WS2801                                       // What kind of strip are you using?
+#define NUM_LEDS 50                                           // Number of LED's
 
 // Initialize changeable global variables.
 uint8_t max_bright = 64;                                     // Overall brightness definition. It can be changed on the fly.
@@ -361,7 +360,7 @@ void setup() {
   LEDS.setBrightness(max_bright);                             // Set the generic maximum brightness value.
 
 //  LEDS.addLeds<LED_TYPE, LED_DT, COLOR_ORDER >(leds, NUM_LEDS); // WS2812B definition
-  LEDS.addLeds<LED_TYPE, LED_DT, LED_CK, COLOR_ORDER >(leds, NUM_LEDS); // APA102 definition
+  LEDS.addLeds<LED_TYPE, LED_DT, LED_CL, COLOR_ORDER >(leds, NUM_LEDS); // APA102 definition
   
   set_max_power_in_volts_and_milliamps(5, 200);                //5V, 500mA
 
